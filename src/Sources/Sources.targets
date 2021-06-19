@@ -1,7 +1,7 @@
 <Project>
 
   <PropertyGroup>
-    <SourcesDir>$(MSBuildProjectDirectory)/../Sources</SourcesDir>
+    <SourcesDir>$(MSBuildThisFileDirectory)</SourcesDir>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -22,20 +22,20 @@
   <Choose>
     <When Condition=" '$(Architecture)'=='x64' "> 
       <ItemGroup>
-        <Compile Include="../Sources/linux.specific/signal.$(Bitness).cs" />
-        <Compile Include="../Sources/linux.specific/epoll.packed.cs" />
+        <Compile Include="$(SourcesDir)/linux.specific/signal.$(Bitness).cs" />
+        <Compile Include="$(SourcesDir)/linux.specific/epoll.packed.cs" />
       </ItemGroup>
     </When>
     <When Condition=" '$(Architecture)'=='arm64' "> 
       <ItemGroup>
-        <Compile Include="../Sources/linux.specific/signal.$(Bitness).cs" />
-        <Compile Include="../Sources/linux.specific/epoll.aligned.cs" />
+        <Compile Include="$(SourcesDir)/linux.specific/signal.$(Bitness).cs" />
+        <Compile Include="$(SourcesDir)/linux.specific/epoll.aligned.cs" />
       </ItemGroup>
     </When>
     <When Condition=" '$(Architecture)'=='arm32' ">
       <ItemGroup>
-        <Compile Include="../Sources/linux.specific/signal.$(Bitness).cs" />
-        <Compile Include="../Sources/linux.specific/epoll.aligned.cs" />
+        <Compile Include="$(SourcesDir)/linux.specific/signal.$(Bitness).cs" />
+        <Compile Include="$(SourcesDir)/linux.specific/epoll.aligned.cs" />
       </ItemGroup>
     </When>
     <Otherwise>
@@ -46,16 +46,16 @@
     <When Condition=" '$(CLibrary)'=='glibc' "> 
       <ItemGroup>
         <!-- Linux standard base -->
-        <Compile Include="../Sources/linux.specific/signal.lsb.cs" />
-        <Compile Include="../Sources/linux.specific/stat.lsb.off$(Bitness).cs" />
-        <Compile Include="../Sources/linux.specific/string.lsb.cs" />
+        <Compile Include="$(SourcesDir)/linux.specific/signal.lsb.cs" />
+        <Compile Include="$(SourcesDir)/linux.specific/stat.lsb.off$(Bitness).cs" />
+        <Compile Include="$(SourcesDir)/linux.specific/string.lsb.cs" />
         <!-- FILE_OFFSET_BITS=64 -->
-        <Compile Include="../Sources/linux.specific/unistd.off$(Bitness).cs" />
-        <Compile Include="../Sources/linux.specific/fcntl.off$(Bitness).cs" />
-        <Compile Include="../Sources/linux.specific/statvfs.off$(Bitness).cs" />
-        <Compile Include="../Sources/linux.specific/mman.off$(Bitness).cs" />
+        <Compile Include="$(SourcesDir)/linux.specific/unistd.off$(Bitness).cs" />
+        <Compile Include="$(SourcesDir)/linux.specific/fcntl.off$(Bitness).cs" />
+        <Compile Include="$(SourcesDir)/linux.specific/statvfs.off$(Bitness).cs" />
+        <Compile Include="$(SourcesDir)/linux.specific/mman.off$(Bitness).cs" />
         <!-- glibc uses size_t as request argument type -->
-        <Compile Include="../Sources/linux.specific/ioctl.sizet.cs" />
+        <Compile Include="$(SourcesDir)/linux.specific/ioctl.sizet.cs" />
       </ItemGroup>
     </When>  
     <Otherwise>
