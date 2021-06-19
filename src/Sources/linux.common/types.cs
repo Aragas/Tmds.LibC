@@ -4,8 +4,8 @@ namespace Tmds.Linux
 {
     public partial struct size_t : IEquatable<size_t>
     {
-        public static implicit operator ulong(size_t arg) => arg.ToUInt64();
-        public static explicit operator uint(size_t arg) => arg.ToUInt32();
+        public static implicit operator ulong(size_t arg) => arg;
+        public static explicit operator uint(size_t arg) => (uint)arg;
         public static explicit operator int(size_t arg) => (int)arg.Value;
 
         public static implicit operator size_t(uint arg) => new size_t(arg);
@@ -14,6 +14,14 @@ namespace Tmds.Linux
         // disambiguate between uint and int overloads
         public static implicit operator size_t(ushort arg) => new size_t((uint)arg);
         public static explicit operator size_t(ulong arg) => new size_t(arg);
+
+        private nuint __value;
+        internal nuint Value => __value;
+
+        internal size_t(ulong arg) { __value = (nuint)arg; }
+        internal size_t(uint arg) { __value = arg; }
+        unsafe internal size_t(void* arg) { __value = (nuint)arg; }
+        internal size_t(ssize_t arg) { __value = (nuint)arg.Value; }
 
         public override string ToString() => Value.ToString();
 
@@ -57,12 +65,18 @@ namespace Tmds.Linux
 
     public partial struct ssize_t : IEquatable<ssize_t>
     {
-        public static implicit operator long(ssize_t arg) => arg.ToInt64();
-        public static explicit operator int(ssize_t arg) => arg.ToInt32();
+        public static implicit operator long(ssize_t arg) => arg;
+        public static explicit operator int(ssize_t arg) => (int)arg;
         public static explicit operator size_t(ssize_t arg) => new size_t(arg);
 
         public static implicit operator ssize_t(int arg) => new ssize_t(arg);
         public static explicit operator ssize_t(long arg) => new ssize_t(arg);
+
+        private nint __value;
+        internal nint Value => __value;
+
+        internal ssize_t(long arg) { __value = (nint) arg; }
+        internal ssize_t(int arg) { __value = arg; }
 
         public override string ToString() => Value.ToString();
 
