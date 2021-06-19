@@ -18,7 +18,7 @@ jobs:
 #        NUGET/GPR        #
 ###########################
   publish-on-nuget:
-    name: Publish on NuGet (Stable)
+    name: Publish on NuGet
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repository
@@ -36,7 +36,11 @@ jobs:
         url: 'https://api.nuget.org/v3/index.json'
 
     - name: Pack Tmds.LibC (Release)
-      run: dotnet pack src/Tmds.LibC/Tmds.LibC.csproj --configuration Release -o "./packages"
+      run: >-
+        dotnet build src/Tmds.LibC.linux-glibc-arm32/Tmds.LibC.linux-glibc-arm32.csproj --configuration Release;
+        dotnet build src/Tmds.LibC.linux-glibc-arm64/Tmds.LibC.linux-glibc-arm64.csproj --configuration Release;
+        dotnet build src/Tmds.LibC.linux-glibc-x64/Tmds.LibC.linux-glibc-x64.csproj --configuration Release;
+        dotnet pack src/Tmds.LibC/Tmds.LibC.csproj --configuration Release -o "./packages";
       shell: pwsh
 
     #- name: Push to NuGet
