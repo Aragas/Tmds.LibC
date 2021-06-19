@@ -11,31 +11,26 @@
   <Import Project="../Sources/Sources.targets" />
 
   <ItemGroup>
-    <None Include="..\Tmds.LibC.linux-glibc-x64\bin\$(Configuration)\$(TargetFramework)\Tmds.LibC.dll" Pack="true">
+    <None Include="..\Tmds.LibC.linux-glibc-x64\bin\$(Configuration)\$(TargetFramework)\*.dll" Pack="true">
       <PackagePath>runtimes/linux-x64/lib/netstandard2.0</PackagePath>
     </None>
-    <None Include="..\Tmds.LibC.linux-glibc-arm64\bin\$(Configuration)\$(TargetFramework)\Tmds.LibC.dll" Pack="true">
-      <PackagePath>runtimes/linux-arm64/lib/netstandard2.0</PackagePath>
-    </None>
-    <None Include="..\Tmds.LibC.linux-glibc-arm32\bin\$(Configuration)\$(TargetFramework)\Tmds.LibC.dll" Pack="true">
-      <PackagePath>runtimes/linux-arm/lib/netstandard2.0</PackagePath>
-    </None>
-
-    <None Include="..\Tmds.LibC.linux-glibc-x64\bin\$(Configuration)\$(TargetFramework)\Tmds.LibC.pdb" Pack="true">
+    <None Include="..\Tmds.LibC.linux-glibc-x64\bin\$(Configuration)\$(TargetFramework)\*.pdb" Pack="true">
       <PackagePath>runtimes/linux-x64/lib/netstandard2.0</PackagePath>
     </None>
-    <None Include="..\Tmds.LibC.linux-glibc-arm64\bin\$(Configuration)\$(TargetFramework)\Tmds.LibC.pdb" Pack="true">
+    
+    <None Include="..\Tmds.LibC.linux-glibc-arm64\bin\$(Configuration)\$(TargetFramework)\*.dll" Pack="true">
       <PackagePath>runtimes/linux-arm64/lib/netstandard2.0</PackagePath>
     </None>
-    <None Include="..\Tmds.LibC.linux-glibc-arm32\bin\$(Configuration)\$(TargetFramework)\Tmds.LibC.pdb" Pack="true">
+    <None Include="..\Tmds.LibC.linux-glibc-arm64\bin\$(Configuration)\$(TargetFramework)\*.pdb" Pack="true">
+      <PackagePath>runtimes/linux-arm64/lib/netstandard2.0</PackagePath>
+    </None>
+    
+    <None Include="..\Tmds.LibC.linux-glibc-arm32\bin\$(Configuration)\$(TargetFramework)\*.dll" Pack="true">
       <PackagePath>runtimes/linux-arm/lib/netstandard2.0</PackagePath>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Tmds.LibC.linux-glibc-arm32\Tmds.LibC.linux-glibc-arm32.csproj" Exclude="all" />
-    <ProjectReference Include="..\Tmds.LibC.linux-glibc-arm64\Tmds.LibC.linux-glibc-arm64.csproj" Exclude="all" />
-    <ProjectReference Include="..\Tmds.LibC.linux-glibc-x64\Tmds.LibC.linux-glibc-x64.csproj" Exclude="all" />
+    <None Include="..\Tmds.LibC.linux-glibc-arm32\bin\$(Configuration)\$(TargetFramework)\*.pdb" Pack="true">
+      <PackagePath>runtimes/linux-arm/lib/netstandard2.0</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
