@@ -11,17 +11,17 @@ namespace Tmds.Linux
         public socklen_t msg_namelen { get; set; }
         public iovec* msg_iov { get; set; }
         private ssize_t _msg_iovlen;
-        public int msg_iovlen { get => _msg_iovlen.ToInt32(); set => _msg_iovlen = value; }
+        public int msg_iovlen { get => (int)_msg_iovlen; set => _msg_iovlen = value; }
         public void* msg_control { get; set; }
         private size_t _msg_controllen;
-        public socklen_t msg_controllen { get => _msg_controllen.ToUInt32(); set => _msg_controllen = (uint)value; }
+        public socklen_t msg_controllen { get => (uint) _msg_controllen; set => _msg_controllen = (uint)value; }
         public int msg_flags { get; set; }
     }
 
     public struct cmsghdr
     {
         private size_t _cmsg_len;
-        public socklen_t cmsg_len { get => _cmsg_len.ToUInt32(); set => _cmsg_len = (uint)value; }
+        public socklen_t cmsg_len { get => (uint)_cmsg_len; set => _cmsg_len = (uint)value; }
         public int cmsg_level { get; set; }
         public int cmsg_type { get; set; }
     }
